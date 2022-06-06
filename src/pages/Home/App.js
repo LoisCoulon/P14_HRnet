@@ -1,62 +1,80 @@
-import { NavLink } from "react-router-dom";
+import Input from "../../components/Input/Input";
+import Header from "../../components/Header/Header";
+import { useState } from "react";
 
 function App() {
+  const [isSent, setIsSent] = useState(false);
+
   function saveEmployee() {
-    return;
+    setIsSent(true);
   }
 
+  function closeModal() {
+    setIsSent(false);
+  }
+
+  const employee = ["charles", "marie", "john", "cunégonde"];
   return (
     <div className="app">
-      <div className="title">
-        <h1>HRnet</h1>
-      </div>
+      <Header
+        title="HRnet"
+        link="/employees"
+        linkName="View Current Employees"
+      ></Header>
       <div className="container">
-        <NavLink to={`/employees`}>View Current Employees</NavLink>
         <h2>Create Employee</h2>
         <form action="#" id="create-employee">
-          <label htmlFor="first-name">First Name</label>
-          <input type="text" id="first-name" />
-
-          <label htmlFor="last-name">Last Name</label>
-          <input type="text" id="last-name" />
-
-          <label htmlFor="date-of-birth">Date of Birth</label>
-          <input id="date-of-birth" type="text" />
-
-          <label htmlFor="start-date">Start Date</label>
-          <input id="start-date" type="text" />
+          <div className="info">
+            <Input id="first-name" name="First Name" type="text"></Input>
+            <Input id="last-name" name="Last Name" type="text"></Input>
+            <Input id="date-of-birth" name="Date of Birth" type="date"></Input>
+            <Input id="start-date" name="Start Date" type="date"></Input>
+          </div>
 
           <fieldset className="address">
             <legend>Address</legend>
 
-            <label htmlFor="street">Street</label>
-            <input id="street" type="text" />
+            <Input
+              className="address--element"
+              id="street"
+              name="Street"
+              type="text"
+            ></Input>
+            <Input
+              className="address--element"
+              id="city"
+              name="City"
+              type="text"
+            ></Input>
+            <div className="address--element">
+              <label htmlFor="state">State</label>
+              <select name="state" id="state"></select>
+            </div>
 
-            <label htmlFor="city">City</label>
-            <input id="city" type="text" />
-
-            <label htmlFor="state">State</label>
-            <select name="state" id="state"></select>
-
-            <label htmlFor="zip-code">Zip Code</label>
-            <input id="zip-code" type="number" />
+            <Input
+              className="address--element"
+              id="zip-code"
+              name="Zip Code"
+              type="number"
+            ></Input>
           </fieldset>
 
           <label htmlFor="department">Department</label>
-          <select name="department" id="department">
-            <option>Sales</option>
-            <option>Marketing</option>
-            <option>Engineering</option>
-            <option>Human Resources</option>
-            <option>Legal</option>
-          </select>
+          {/* <Dropdown options={employee} defaultOption="Sélectionner"></Dropdown> */}
         </form>
 
         <button onClick={saveEmployee}>Save</button>
       </div>
-      <div id="confirmation" className="modal">
-        Employee Created!
-      </div>
+      {isSent ? (
+        <div className="blocker">
+          <div id="confirmation" className="modal">
+            Employee Created!
+            <p className="close" onClick={closeModal}>
+              x
+            </p>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
