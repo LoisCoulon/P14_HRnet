@@ -1,8 +1,8 @@
-function Input({ className, name, id, type }) {
+function Input({ className, name, id, type, onChange }) {
   return (
     <div className={className}>
       <label htmlFor={id}>{name}</label>
-      <input type={type} id={id}></input>
+      <input onChange={onChange} type={type} id={id}></input>
     </div>
   );
 }
