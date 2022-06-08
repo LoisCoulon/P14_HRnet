@@ -7,7 +7,7 @@ import { saveEmployee } from "../../store";
 
 function App() {
   const [isSent, setIsSent] = useState(false);
-  const emptyForm = useState({
+  const [employeeForm, setEmployeeForm] = useState({
     firstName: "",
     lastName: "",
     startDate: "",
@@ -18,19 +18,17 @@ function App() {
     state: "",
     zipCode: "",
   });
-  const [employeeForm, setEmployeeForm] = useState(emptyForm);
   const dispatch = useDispatch();
 
   function saveEmployees() {
     dispatch(saveEmployee(employeeForm));
+    console.log(employeeForm);
     setIsSent(true);
   }
 
   function closeModal() {
     setIsSent(false);
   }
-
-  const employee = ["charles", "marie", "john", "cunégonde"];
 
   return (
     <div className="app">
@@ -49,7 +47,6 @@ function App() {
                   ...employeeForm,
                   firstName: firstName.currentTarget.value,
                 });
-                console.log(employeeForm);
               }}
               id="first-name"
               name="First Name"
@@ -61,7 +58,6 @@ function App() {
                   ...employeeForm,
                   lastName: lastName.currentTarget.value,
                 });
-                console.log(employeeForm);
               }}
               id="last-name"
               name="Last Name"
@@ -73,7 +69,6 @@ function App() {
                   ...employeeForm,
                   dateOfBirth: dateOfBirth.currentTarget.value,
                 });
-                console.log(employeeForm);
               }}
               id="date-of-birth"
               name="Date of Birth"
@@ -85,7 +80,6 @@ function App() {
                   ...employeeForm,
                   startDate: startDate.currentTarget.value,
                 });
-                console.log(employeeForm);
               }}
               id="start-date"
               name="Start Date"
