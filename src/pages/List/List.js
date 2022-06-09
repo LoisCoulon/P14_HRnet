@@ -5,6 +5,7 @@ import Input from "../../components/Input/Input";
 
 function List() {
   const [entry, setEntry] = useState(0);
+  const [search, setSearch] = useState("");
 
   const datas = [
     {
@@ -69,10 +70,23 @@ function List() {
     { title: "Zip Code", data: "zipCode" },
   ];
 
-  function searchEmployee(e) {
-    const target = e.target.value.toString().toLowerCase();
-    console.log(target);
-  }
+  //search function
+  const handleSearch = (event) => {
+    setSearch(event.target.value);
+  };
+
+  const data = datas.filter(
+    (item) =>
+      item.city.toString().toLowerCase().includes(search) ||
+      item.department.toString().toLowerCase().includes(search) ||
+      item.firstName.toString().toLowerCase().includes(search) ||
+      item.dateOfBirth.toString().toLowerCase().includes(search) ||
+      item.lastName.toString().toLowerCase().includes(search) ||
+      item.startDate.toString().toLowerCase().includes(search) ||
+      item.state.toString().toLowerCase().includes(search) ||
+      item.street.toString().toLowerCase().includes(search) ||
+      item.zipCode.toString().toLowerCase().includes(search)
+  );
 
   return (
     <div id="employee-div" className="wrapper">
@@ -91,11 +105,11 @@ function List() {
             id="search"
             name="Search : "
             type="text"
-            onChange={searchEmployee}
+            onChange={handleSearch}
           ></Input>
         </div>
         <div className="employee-table--body">
-          <DataTable columns={columns} datas={datas}></DataTable>
+          <DataTable columns={columns} datas={data}></DataTable>
         </div>
         <div className="employee-table--footer">
           <span>
