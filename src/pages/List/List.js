@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { usePagination } from "react-table";
 import DataTable from "../../components/DataTable/DataTable";
 import Header from "../../components/Header/Header";
 import Input from "../../components/Input/Input";
@@ -40,6 +39,11 @@ function List() {
     setPage(selected);
   };
 
+  // Changes the number of employees showed
+  function changeEntries(event) {
+    setEmployeesPerPage(event.target.value);
+  }
+
   return (
     <div id="employee-div" className="wrapper">
       <Header title="Current Employees" link="/" linkName="Home"></Header>
@@ -47,7 +51,7 @@ function List() {
         <div className="employee-table--header">
           <div>
             Show{" "}
-            <select>
+            <select onChange={changeEntries}>
               <option value="10">10</option>
               <option value="25">25</option>
               <option value="50">50</option>
@@ -63,13 +67,21 @@ function List() {
           ></Input>
         </div>
         <div className="employee-table--body">
-          <DataTable columns={columns} datas={data}></DataTable>
+          {data.length === 0 ? (
+            <p>No matching records found</p>
+          ) : (
+            <DataTable columns={columns} datas={data}></DataTable>
+          )}
         </div>
         <div className="employee-table--footer">
           <span>
-            Showing{" "}
-            {data.length < employeesPerPage ? data.length : employeesPerPage} of{" "}
-            {datas.length} entries
+            Showing {data.length > 0 ? 1 : 0} to {""}
+            {data.length < employeesPerPage
+              ? data.length
+              : employeesPerPage} of {datas.length} entries{" "}
+            {data.length !== datas.length && data.length !== employeesPerPage
+              ? "(filtered from " + datas.length + " total entries)"
+              : null}
           </span>
           <ReactPaginate
             previousLabel={"Previous"}

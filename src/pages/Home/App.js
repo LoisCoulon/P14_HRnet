@@ -3,6 +3,7 @@ import Header from "../../components/Header/Header";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { saveEmployee } from "../../store";
+import { states } from "../../data";
 // import Dropdown from "my-custom-dropdown";
 
 function App() {
@@ -126,7 +127,12 @@ function App() {
                 name="state"
                 id="state"
               >
-                <option value="">OKL</option>
+                {states.map((state) => (
+                  <option key={state.abbreviation} value={state.abbreviation}>
+                    {state.name}
+                  </option>
+                ))}
+
                 <option value="">FL</option>
                 <option value="">CAL</option>
                 <option value="">NY</option>
@@ -158,7 +164,11 @@ function App() {
             name=""
             id="department"
           >
-            <option value="">Dep</option>
+            <option>Sales</option>
+            <option>Marketing</option>
+            <option>Engineering</option>
+            <option>Human Resources</option>
+            <option>Legal</option>
           </select>
           {/* <Dropdown options={employee} defaultOption="Sélectionner"></Dropdown> */}
         </form>
