@@ -146,15 +146,15 @@ const datas = [
 ];
 
 const columns = [
-  { title: "First Name", data: "firstName" },
-  { title: "Last Name", data: "lastName" },
-  { title: "Start Date", data: "startDate" },
-  { title: "Department", data: "department" },
-  { title: "Date of Birth", data: "dateOfBirth" },
-  { title: "Street", data: "street" },
-  { title: "City", data: "city" },
-  { title: "State", data: "state" },
-  { title: "Zip Code", data: "zipCode" },
+  { title: "First Name", accessor: "firstName", sortable: true },
+  { title: "Last Name", accessor: "lastName", sortable: true },
+  { title: "Start Date", accessor: "startDate", sortable: true },
+  { title: "Department", accessor: "department", sortable: true },
+  { title: "Date of Birth", accessor: "dateOfBirth", sortable: true },
+  { title: "Street", accessor: "street", sortable: true },
+  { title: "City", accessor: "city", sortable: true },
+  { title: "State", accessor: "state", sortable: true },
+  { title: "Zip Code", accessor: "zipCode", sortable: true },
 ];
 
 const states = [

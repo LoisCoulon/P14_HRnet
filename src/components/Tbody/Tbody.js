@@ -1,4 +1,4 @@
-function Tbody({ datas }) {
+function Tbody({ tableData, columns }) {
   function addClassname(id) {
     let value = "";
 
@@ -9,20 +9,20 @@ function Tbody({ datas }) {
     }
     return value;
   }
+  console.log(tableData);
 
   return (
     <tbody>
-      {datas.map((data) => (
+      {tableData.map((data) => (
         <tr key={data.id} role="row" className={addClassname(data.id)}>
-          <td className="sorting_1">{data.firstName}</td>
-          <td>{data.lastName}</td>
-          <td>{data.startDate}</td>
-          <td>{data.department}</td>
-          <td>{data.dateOfBirth}</td>
-          <td>{data.street}</td>
-          <td>{data.city}</td>
-          <td>{data.state}</td>
-          <td>{data.zipCode}</td>
+          {columns.map(({ accessor }) => {
+            const tData = data[accessor] ? data[accessor] : "——";
+            return (
+              <td key={accessor} className="sorting_1">
+                {tData}
+              </td>
+            );
+          })}
         </tr>
       ))}
     </tbody>
