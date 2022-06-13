@@ -1,12 +1,12 @@
 import { createStore } from "redux";
 import { produce } from "immer";
+import { datas } from "../src/data";
 
 const reduxDevtools =
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 
 const initialState = {
-  employee: localStorage.getItem("employee"),
-  profile: {},
+  employeeList: datas,
 };
 
 export const saveEmployee = (employee) => ({
@@ -16,9 +16,8 @@ export const saveEmployee = (employee) => ({
 
 function reducer(state = initialState, action) {
   if (action.type === "saveEmployee") {
-    localStorage.setItem("employee", action.payload);
     return produce(state, (draft) => {
-      draft.employee = action.payload;
+      draft.employeeList.push(action.payload);
     });
   }
 

@@ -3,8 +3,8 @@ import Header from "../../components/Header/Header";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { saveEmployee } from "../../store";
-import { states } from "../../data";
-// import Dropdown from "my-custom-dropdown";
+import { states, department } from "../../data";
+import { Dropdown } from "my-dropdown-lib";
 
 function App() {
   const [isSent, setIsSent] = useState(false);
@@ -128,14 +128,10 @@ function App() {
                 id="state"
               >
                 {states.map((state) => (
-                  <option key={state.abbreviation} value={state.abbreviation}>
+                  <option key={state.key} value={state.key}>
                     {state.name}
                   </option>
                 ))}
-
-                <option value="">FL</option>
-                <option value="">CAL</option>
-                <option value="">NY</option>
               </select>
             </div>
 
@@ -154,23 +150,16 @@ function App() {
           </fieldset>
 
           <label htmlFor="department">Department</label>
-          <select
-            onChange={(department) => {
+          <Dropdown
+            options={department}
+            defaultOption="Select a department"
+            onChange={(dep) => {
               setEmployeeForm({
                 ...employeeForm,
-                department: department.currentTarget.value,
+                department: dep,
               });
             }}
-            name=""
-            id="department"
-          >
-            <option>Sales</option>
-            <option>Marketing</option>
-            <option>Engineering</option>
-            <option>Human Resources</option>
-            <option>Legal</option>
-          </select>
-          {/* <Dropdown options={employee} defaultOption="Sélectionner"></Dropdown> */}
+          ></Dropdown>
         </form>
 
         <button onClick={saveEmployees}>Save</button>

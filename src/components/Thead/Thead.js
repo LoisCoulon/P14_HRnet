@@ -33,21 +33,6 @@ function Thead({ columns, handleSorting }) {
             </th>
           );
         })}
-        {/* {columns.map((column) => (
-          <th
-            key={column.data}
-            className="sorting"
-            tabIndex="0"
-            aria-controls="employee-table"
-            rowSpan="1"
-            colSpan="1"
-          >
-            {column.title}
-            <button onClick={onSortChange}>
-              <i className={fontAwesome} />
-            </button>
-          </th>
-        ))} */}
       </tr>
     </thead>
   );

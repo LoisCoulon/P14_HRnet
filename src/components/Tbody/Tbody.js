@@ -9,7 +9,6 @@ function Tbody({ tableData, columns }) {
     }
     return value;
   }
-  console.log(tableData);
 
   return (
     <tbody>

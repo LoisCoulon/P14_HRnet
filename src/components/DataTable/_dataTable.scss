@@ -17,20 +17,28 @@ table {
     color: $second-color;
   }
 
-  th.up {
-    background-image: url("../../assets/up_arrow.png");
-  }
-  th.down {
-    background-image: url("../../assets/down_arrow.png");
-  }
-  th.default {
-    background-image: url("../../assets/default.png");
-  }
-  th.up,
-  th.default,
-  th.down {
-    cursor: pointer;
-    background-repeat: no-repeat;
-    background-position: center right;
+  th {
+    padding: 8px;
+    border-bottom: 1px solid #dcdcdc;
+    font-weight: bold;
+    text-align: left;
+
+    &.default {
+      background-image: url("../../assets/default.png");
+    }
+    &.up {
+      background-image: url("../../assets/up_arrow.png");
+    }
+    &.down {
+      background-image: url("../../assets/down_arrow.png");
+    }
+
+    &.up,
+    &.default,
+    &.down {
+      cursor: pointer;
+      background-repeat: no-repeat;
+      background-position: center right;
+    }
   }
 }
