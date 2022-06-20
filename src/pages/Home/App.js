@@ -117,24 +117,17 @@ function App() {
             ></Input>
             <div className="address--element">
               <label htmlFor="state">State</label>
-              <select
+              <Dropdown
+                options={states}
+                defaultOption="Please select a state"
                 onChange={(state) => {
                   setEmployeeForm({
                     ...employeeForm,
-                    state: state.currentTarget.value,
+                    state: state,
                   });
                 }}
-                name="state"
-                id="state"
-              >
-                {states.map((state) => (
-                  <option key={state.key} value={state.key}>
-                    {state.name}
-                  </option>
-                ))}
-              </select>
+              ></Dropdown>
             </div>
-
             <Input
               onChange={(zipCode) => {
                 setEmployeeForm({
@@ -152,7 +145,7 @@ function App() {
           <label htmlFor="department">Department</label>
           <Dropdown
             options={department}
-            defaultOption="Select a department"
+            defaultOption="Please select a department"
             onChange={(dep) => {
               setEmployeeForm({
                 ...employeeForm,

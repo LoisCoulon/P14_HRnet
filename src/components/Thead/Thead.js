@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 function Thead({ columns, handleSorting }) {
   const [sortField, setSortField] = useState("");
@@ -37,5 +38,10 @@ function Thead({ columns, handleSorting }) {
     </thead>
   );
 }
+
+Thead.propTypes = {
+  handleSorting: PropTypes.func,
+  columns: PropTypes.array,
+};
 
 export default Thead;

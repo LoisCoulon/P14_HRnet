@@ -1,6 +1,7 @@
 import Thead from "../Thead/Thead";
 import Tbody from "../Tbody/Tbody";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 function DataTable({ datas, columns }) {
   const [tableData, setTableData] = useState(datas);
@@ -27,5 +28,10 @@ function DataTable({ datas, columns }) {
     </table>
   );
 }
+
+DataTable.propTypes = {
+  datas: PropTypes.array,
+  columns: PropTypes.array,
+};
 
 export default DataTable;

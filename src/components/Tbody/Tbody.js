@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 function Tbody({ tableData, columns }) {
   function addClassname(id) {
     let value = "";
@@ -27,5 +29,10 @@ function Tbody({ tableData, columns }) {
     </tbody>
   );
 }
+
+Tbody.propTypes = {
+  tableData: PropTypes.array,
+  columns: PropTypes.array,
+};
 
 export default Tbody;

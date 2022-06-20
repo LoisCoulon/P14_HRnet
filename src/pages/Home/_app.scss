@@ -17,15 +17,32 @@
       color: $main-color;
     }
     form {
-      input,
-      select {
-        border: 2px solid $second-color;
+      input {
+        @include input;
       }
+
       label {
         color: $main-color;
         display: block;
         margin-top: 1rem;
         margin-bottom: 10px;
+      }
+      .address--element {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .dropdown {
+          width: 70%;
+        }
+      }
+
+      .dropdown {
+        width: 35%;
+        &--header {
+          margin-bottom: 0.5em;
+          padding: 0.4em 1em;
+          font-size: 1em;
+        }
       }
 
       .address {

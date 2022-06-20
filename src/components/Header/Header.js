@@ -1,5 +1,6 @@
 import logo from "../../assets/wealth_health.jpg";
 import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 
 function Header({ title, link, linkName }) {
   return (
@@ -13,5 +14,11 @@ function Header({ title, link, linkName }) {
     </header>
   );
 }
+
+Header.propTypes = {
+  title: PropTypes.string,
+  link: PropTypes.string,
+  linkName: PropTypes.string,
+};
 
 export default Header;
