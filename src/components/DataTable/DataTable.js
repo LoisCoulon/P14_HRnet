@@ -1,10 +1,14 @@
 import Thead from "../Thead/Thead";
 import Tbody from "../Tbody/Tbody";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 function DataTable({ datas, columns }) {
   const [tableData, setTableData] = useState(datas);
+
+  useEffect(() => {
+    setTableData(datas);
+  }, [datas]);
 
   const handleSorting = (sortField, sortOrder) => {
     if (sortField) {

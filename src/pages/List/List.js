@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import DataTable from "../../components/DataTable/DataTable";
 import Header from "../../components/Header/Header";
 import Input from "../../components/Input/Input";
-import { datas, columns } from "../../data";
+import { columns } from "../../data";
 import ReactPaginate from "react-paginate";
 import { useSelector } from "react-redux";
 
@@ -13,14 +13,17 @@ function List() {
   const [numberOfEmployeesVisited, setNumberOfEmployeesVisited] = useState(
     page * employeesPerPage
   );
-  const totalPages = Math.ceil(datas.length / employeesPerPage);
-
   const employeeList = useSelector((store) => store.employeeList);
-  const [employeeFiltered, setEmployeeFiltered] = useState(datas);
+  const [employeeFiltered, setEmployeeFiltered] = useState([]);
+  const totalPages = Math.ceil(employeeList.length / employeesPerPage);
+
+  useEffect(() => {
+    setNumberOfEmployeesVisited(page * employeesPerPage);
+  }, [page, employeesPerPage]);
 
   useEffect(() => {
     setEmployeeFiltered(
-      datas
+      employeeList
         .filter(
           (item) =>
             item.city.toString().toLowerCase().includes(search) ||
@@ -38,7 +41,7 @@ function List() {
           numberOfEmployeesVisited + employeesPerPage
         )
     );
-  }, [page, employeeList, search, employeesPerPage, numberOfEmployeesVisited]);
+  }, [employeeList, search, employeesPerPage, numberOfEmployeesVisited]);
 
   //search function
   const handleSearch = (event) => {
@@ -86,17 +89,17 @@ function List() {
         <div className="employee-table--footer">
           <span>
             Showing{" "}
-            {employeeFiltered === 0
-              ? employeeFiltered
-              : numberOfEmployeesVisited + 1}{" "}
+            {employeeFiltered.length === 0 ? 0 : numberOfEmployeesVisited + 1}{" "}
             to {""}
             {employeeFiltered.length < employeesPerPage
-              ? datas.length
+              ? page > 0
+                ? numberOfEmployeesVisited + employeeFiltered.length
+                : employeeFiltered.length
               : employeesPerPage}{" "}
-            of {datas.length} entries{" "}
-            {employeeFiltered.length !== datas.length &&
+            of {employeeList.length} entries{" "}
+            {employeeFiltered.length !== employeeList.length &&
             employeeFiltered.length !== employeesPerPage
-              ? "(filtered from " + datas.length + " total entries)"
+              ? "(filtered from " + employeeList.length + " total entries)"
               : null}
           </span>
           <ReactPaginate

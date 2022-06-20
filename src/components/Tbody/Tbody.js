@@ -14,8 +14,8 @@ function Tbody({ tableData, columns }) {
 
   return (
     <tbody>
-      {tableData.map((data) => (
-        <tr key={data.id} role="row" className={addClassname(data.id)}>
+      {tableData.map((data, index) => (
+        <tr key={index} role="row" className={addClassname(index)}>
           {columns.map(({ accessor }) => {
             const tData = data[accessor] ? data[accessor] : "——";
             return (
