@@ -23,7 +23,6 @@ function App() {
 
   function saveEmployees() {
     dispatch(saveEmployee(employeeForm));
-    console.log(employeeForm);
     setIsSent(true);
   }
 
